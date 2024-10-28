@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
+
+    <title>{% block title %} {% endblock %}</title>
+    {% block css %}
+    {% endblock %}
+    <div class="container mt-4">
+        <h1 class="text-center"><u>Students List</u></h1>
+        <table class="table table-hover" id="example">
+            <thead>
+                <tr class="text-center">
+                    <th>Sr.No</th>
+                    <th>Name</th>
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Mobile Number</th>
+                    <th>Branch</th>
+                    <th>Class</th>
+                    <th>Roll Number</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr class="text-center">
+                    <td>{{forloop.counter}}.</td>
+                    <td>{{student.user.get_full_name}}</td>
+                    <td>{{student.user.id}}</td>
+                    <td>{{student.user.email}}</td>
+                    <td>{{student.phone}}</td>
+                    <td>{{student.branch}}</td>
+                    <td>{{student.classroom}}</td>
+                    <td>{{student.roll_no}}</td>
+                    <td><a href="/delete_student/{{student.id}}/" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this student?')">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
